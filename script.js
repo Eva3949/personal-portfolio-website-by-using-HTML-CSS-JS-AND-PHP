@@ -66,6 +66,74 @@ function updateActiveNavLink() {
 
 window.addEventListener('scroll', updateActiveNavLink);
 
+// Load projects from PHP backend
+async function loadProjects() {
+    try {
+        const response = await fetch('get_projects.php');
+        const result = await response.json();
+        
+        const projectsGrid = document.getElementById('projectsGrid');
+        
+        if (result.success && result.projects.length > 0) {
+            projectsGrid.innerHTML = '';
+            
+            result.projects.forEach(project => {
+                const projectCard = createProjectCard(project);
+                projectsGrid.appendChild(projectCard);
+            });
+        } else {
+            projectsGrid.innerHTML = '<div class="no-projects">No projects found. Check back soon!</div>';
+        }
+    } catch (error) {
+        console.error('Error loading projects:', error);
+        const projectsGrid = document.getElementById('projectsGrid');
+        projectsGrid.innerHTML = '<div class="error">Error loading projects. Please try again later.</div>';
+    }
+}
+
+function createProjectCard(project) {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    
+    const techTags = project.technologies.map(tech => 
+        `<span class="tech-tag">${tech.trim()}</span>`
+    ).join('');
+    
+    const liveDemoLink = project.live_demo_url ? 
+        `<a href="${project.live_demo_url}" target="_blank" class="project-link">
+            <i class="fas fa-external-link-alt"></i> Live Demo
+        </a>` : '';
+    
+    const githubLink = project.github_url ? 
+        `<a href="${project.github_url}" target="_blank" class="project-link">
+            <i class="fab fa-github"></i> GitHub
+        </a>` : '';
+    
+    card.innerHTML = `
+        <div class="project-image">
+            <img src="${project.image_url}" alt="${project.title}">
+        </div>
+        <div class="project-content">
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <div class="project-tech">
+                ${techTags}
+            </div>
+            <div class="project-links">
+                ${liveDemoLink}
+                ${githubLink}
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
+
+// Load projects when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadProjects();
+});
+
 // Static sections - no scroll animations
 
 // Typing animation for hero title
