@@ -1,9 +1,21 @@
 <?php
 // Database configuration for XAMPP
+<<<<<<< HEAD
 $host = 'localhost';
 $username = 'root';
 $password = '';
 $database = 'portfolio_db';
+=======
+// $host = 'localhost';
+// $username = 'root';
+// $password = '';
+// $database = 'portfolio_db';
+
+$host = 'evadevstudio.com';
+$username = 'evadevih_astu_q_user';
+$password = 'eva_3949';
+$database = 'evadevih_astu_q';
+>>>>>>> 18c924d (update the get in teach)
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $database);

@@ -4,7 +4,11 @@ A modern, responsive portfolio website built with HTML, CSS, JavaScript, and PHP
 
 ## Features
 
+<<<<<<< HEAD
 - **Frontend**: Pure HTML, CSS, and JavaScript (no frameworks)
+=======
+- **Frontend**: Pure HTML, CSS, and JavaScript
+>>>>>>> 18c924d (update the get in teach)
 - **Backend**: PHP with MySQL database
 - **Responsive Design**: Works on all devices
 - **Admin Panel**: Add/manage projects dynamically

@@ -261,17 +261,28 @@ body {
 
 .profile-img {
     width: 400px;
+<<<<<<< HEAD
     height: 400px;
     border-radius: 20px;
     overflow: hidden;
+=======
+    height: auto;
+    border-radius: 20px;
+    overflow: visible;
+>>>>>>> 18c924d (update the get in teach)
     box-shadow: var(--shadow-xl);
     animation: float 6s ease-in-out infinite;
 }
 
 .profile-img img {
     width: 100%;
+<<<<<<< HEAD
     height: 100%;
     object-fit: cover;
+=======
+    height: auto;
+    object-fit: contain;
+>>>>>>> 18c924d (update the get in teach)
 }
 
 @keyframes float {
