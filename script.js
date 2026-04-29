@@ -202,7 +202,7 @@ contactForm.addEventListener('submit', (e) => {
     sendFormData(data);
 });
 
-// Send form data to PHP script
+// Send form data to Formspree
 function sendFormData(data) {
     // Show loading state
     const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -210,26 +210,32 @@ function sendFormData(data) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Send data to PHP script
-    fetch('send_contact.php', {
+    // Get Formspree ID from form action
+    const formAction = contactForm.getAttribute('action');
+    const formspreeId = formAction.split('/').pop();
+    
+    // Send data to Formspree
+    fetch(formAction, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         },
-        body: new URLSearchParams(data)
+        body: JSON.stringify(data)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Network response was not ok');
+    })
     .then(result => {
         // Reset form
         contactForm.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         
-        if (result.success) {
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        } else {
-            showNotification(result.message || 'Failed to send message. Please try again.', 'error');
-        }
+        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
     })
     .catch(error => {
         submitBtn.textContent = originalText;
