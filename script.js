@@ -198,31 +198,18 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
     
-<<<<<<< HEAD
-    // Simulate form submission (replace with actual implementation)
-    simulateFormSubmission(data);
-});
-
-// Simulate form submission
-function simulateFormSubmission(data) {
-=======
     // Send form data to PHP script
     sendFormData(data);
 });
 
 // Send form data to PHP script
 function sendFormData(data) {
->>>>>>> 18c924d (update the get in teach)
     // Show loading state
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-<<<<<<< HEAD
-    // Simulate API call
-    setTimeout(() => {
-=======
     // Send data to PHP script
     fetch('send_contact.php', {
         method: 'POST',
@@ -233,17 +220,11 @@ function sendFormData(data) {
     })
     .then(response => response.json())
     .then(result => {
->>>>>>> 18c924d (update the get in teach)
         // Reset form
         contactForm.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         
-<<<<<<< HEAD
-        // Show success message
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-    }, 2000);
-=======
         if (result.success) {
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
         } else {
@@ -256,7 +237,6 @@ function sendFormData(data) {
         showNotification('Error sending message. Please try again.', 'error');
         console.error('Error:', error);
     });
->>>>>>> 18c924d (update the get in teach)
 }
 
 // Notification system

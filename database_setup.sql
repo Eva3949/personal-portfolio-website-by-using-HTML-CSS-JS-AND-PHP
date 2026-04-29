@@ -1,12 +1,7 @@
 -- Portfolio Database Setup for XAMPP
 -- Create database if it doesn't exist
-<<<<<<< HEAD
-CREATE DATABASE IF NOT EXISTS portfolio_db;
-USE portfolio_db;
-=======
 -- CREATE DATABASE IF NOT EXISTS portfolio_db;
 -- USE portfolio_db;
->>>>>>> 18c924d (update the get in teach)
 
 -- Create projects table
 CREATE TABLE IF NOT EXISTS projects (
